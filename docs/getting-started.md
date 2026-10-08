@@ -76,6 +76,14 @@ Hits always land in the local Hits DB. In **Settings -> Hit outputs** you can al
 
 Both fire when a run finishes. Leave a field blank to disable it.
 
+## Resuming a job
+
+Turn on **Resume** in a job's detail to skip list items already processed for
+that config + wordlist pair, so a stopped or finished run continues where it
+left off instead of starting over. Progress is saved per config + list when a
+run ends. **Reset progress** clears it, and turning Resume off also runs the
+whole list again.
+
 ## Debugging a config
 
 While building a config in the **Stacker**, press **Debug** in the top bar to
