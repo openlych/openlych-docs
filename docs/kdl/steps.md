@@ -34,6 +34,7 @@ request POST "https://example.test/login" follow-redirects=#false tls="1.2" {
 ```kdl
 body text "user={{USERNAME}}&pass={{PASSWORD}}"
 body file "payload.json"
+body raw "{\"token\":\"{{t}}\"}" content-type="application/json"
 body multipart {
     part "field" "value"
     part "upload" "avatar.png" file=#true
@@ -42,8 +43,14 @@ body multipart {
 
 - `body text "..."` - inline body.
 - `body file "path"` - read the body from a file.
+- `body raw "..." content-type="..."` - send the body verbatim. The
+  `content-type` property is optional; omit it to send no Content-Type header.
 - `body multipart { ... }` - `multipart/form-data`; each `part` is text, or a
   file when `file=#true`.
+
+The block editor exposes these as a **Request Type** selector (Standard, Basic
+Auth, Multipart, Raw); in KDL the type is implied by which `body` and
+`basic-auth` nodes you use.
 
 Each list item runs in its own cookie jar, so a `Set-Cookie` from one request
 is sent automatically on the item's later requests.
