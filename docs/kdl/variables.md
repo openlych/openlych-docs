@@ -26,6 +26,22 @@ Every wordlist line seeds:
 
 A CSV list seeds one variable per named column instead.
 
+#### Wordlist type
+
+A job's **List type** (in the job detail) changes how each line is read and
+drops lines that don't fit:
+
+| Type | Binds | Keeps lines that |
+|------|-------|------------------|
+| Default | `line`, `INPUT`, and `USERNAME`/`PASSWORD` if a `:` is present | always |
+| Credentials | `USERNAME`, `PASSWORD` | are a `user:pass` combo |
+| Numeric | `number` | are all digits |
+| Email | `EMAIL`, `USERNAME`, `DOMAIN` | look like an email |
+| URL | `URL` | start with `http://` / `https://` |
+
+**Data rules** on the job filter the list further: a minimum length and a
+regex the line must match. Both apply to text lists (not CSV).
+
 ### From the flow
 
 - [`parse`](steps.md#parse) binds the value(s) it pulls out of a response.
