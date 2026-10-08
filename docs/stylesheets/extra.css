@@ -1,0 +1,17 @@
+/* OpenLych brand refinement over the Material/Zensical base.
+   The palette names in zensical.toml give a close pink; these vars pin the
+   exact lychee hex and the app's slate-dark background. */
+
+:root {
+  --md-primary-fg-color:        #E7467A;
+  --md-primary-fg-color--light: #FF6B98;
+  --md-primary-fg-color--dark:  #9E2E54;
+  --md-accent-fg-color:         #D63A6C;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-accent-fg-color:    #FF6B98;
+  --md-default-bg-color:   #0F1117;
+  --md-code-bg-color:      #171A21;
+  --md-default-fg-color:   #DDE3EC;
+}

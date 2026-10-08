@@ -1,0 +1,57 @@
+[project]
+site_name = "OpenLych Docs"
+site_description = "Documentation for OpenLych and its KDL configuration language."
+site_author = "OpenLych"
+# Change this to your Pages URL before publishing (e.g. https://<user>.github.io/openlych-docs/).
+site_url = "https://your.github.io/openlych-docs/"
+copyright = "For authorized security research only."
+repo_url = "https://github.com/your/openlych"
+repo_name = "your/openlych"
+
+[project.theme]
+language = "en"
+logo = "assets/logo.svg"
+favicon = "assets/favicon.svg"
+features = [
+    "navigation.instant",
+    "navigation.sections",
+    "navigation.top",
+    "navigation.footer",
+    "search.highlight",
+    "content.code.copy",
+    "toc.follow",
+]
+
+[project.theme.font]
+text = "Inter"
+code = "JetBrains Mono"
+
+# Light mode. Exact brand hex is refined in stylesheets/extra.css.
+[[project.theme.palette]]
+scheme = "default"
+primary = "pink"
+accent = "pink"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+# Dark mode.
+[[project.theme.palette]]
+scheme = "slate"
+primary = "pink"
+accent = "pink"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+extra_css = ["stylesheets/extra.css"]
+
+nav = [
+  { "Home" = "index.md" },
+  { "Getting started" = "getting-started.md" },
+  { "KDL config language" = [
+    { "Overview" = "kdl/index.md" },
+    { "Steps" = "kdl/steps.md" },
+    { "Conditions" = "kdl/conditions.md" },
+    { "Variables" = "kdl/variables.md" },
+    { "Metadata" = "kdl/metadata.md" },
+  ]},
+]
