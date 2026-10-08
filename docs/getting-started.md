@@ -47,3 +47,20 @@ if {
 
 Save it, then in the **Jobs** tab create a job that points the config at a list
 and press **Start**. See the [KDL overview](kdl/index.md) for the full language.
+
+## Debugging a config
+
+While building a config in the **Stacker**, press **Debug** in the top bar to
+open the debugger panel on the right. Type one data line (for example
+`user:pass`), press **Start**, and the flow runs once against just that line.
+Nothing is saved to the Hits DB.
+
+Three tabs show the result:
+
+- **Log**: each step and its outcome (request status, key-check pass/fail,
+  parsed values, the final result bucket).
+- **Data**: the variables the flow produced. Captured variables are highlighted.
+- **HTML**: the last response body, rendered in a sandboxed frame.
+
+This is the fast loop for getting a config right before you point it at a full
+wordlist.
