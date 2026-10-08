@@ -94,6 +94,35 @@ set "ua" "OpenLych/1.0"
 set "auth" "Bearer {{token}}"
 ```
 
+## function
+
+Compute a value with a built-in operation and bind it to a variable. Add
+`capture=#true` to surface it in results and the Hits DB.
+
+```kdl
+function "hash"  sha256 "{{PASSWORD}}"
+function "token" uuid
+function "now"   unix-time
+function "pin"   random-int 1000 9999
+function "nonce" random-string 16 capture=#true
+function "enc"   base64-encode "{{USERNAME}}:{{PASSWORD}}"
+```
+
+| Operation | Argument(s) | Result |
+|-----------|-------------|--------|
+| `length` | `"input"` | Character count. |
+| `to-upper` / `to-lower` | `"input"` | Upper / lower case. |
+| `base64-encode` / `base64-decode` | `"input"` | Base64. |
+| `url-encode` / `url-decode` | `"input"` | Percent-encoding. |
+| `md5` / `sha256` | `"input"` | Lower-case hex digest. |
+| `uuid` | (none) | Random UUID v4. |
+| `unix-time` | (none) | Current Unix time (seconds). |
+| `random-int` | `min max` | Random integer in `[min, max]`. |
+| `random-string` | `length` | Random alphanumeric string. |
+
+The `input` arguments are templated, so `{{var}}` and `<VAR>` expand first.
+Random values use a non-cryptographic generator (fine for test data, not keys).
+
 ## delay
 
 Pause the flow for a number of milliseconds (also accepts `sleep`).
