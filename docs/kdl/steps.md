@@ -55,6 +55,20 @@ Auth, Multipart, Raw); in KDL the type is implied by which `body` and
 Each list item runs in its own cookie jar, so a `Set-Cookie` from one request
 is sent automatically on the item's later requests.
 
+## tcp / udp
+
+Raw socket: connect to `host port`, send a payload, and read the reply into the
+last-response body (so `parse` and `key-check` work on it afterwards). The host
+and payload are templated.
+
+```kdl
+tcp "127.0.0.1" 6379 "PING\r\n" read-timeout=500
+udp "1.1.1.1" 53 "..."
+```
+
+`read-timeout` is in milliseconds (0 or omitted = the job's request timeout).
+Plaintext only (no TLS on the socket) and replies are capped at 64 KiB.
+
 ## parse
 
 Pulls value(s) out of the last response (or an overridable `source`) into a
