@@ -133,14 +133,32 @@ delay 500
 
 ## key-check
 
-Put the item in a bucket when a condition holds, without stopping the flow.
+OpenBullet-style keychains. The block holds one or more `chain` nodes, checked
+top to bottom; the first chain that matches fires its action and stops the
+block. A chain's first argument is the action; its children are
+[conditions](conditions.md).
 
 ```kdl
-key-check { status 200 }
-key-check { contains "Welcome back" }
+key-check {
+    chain "valid"   { status 200; contains "Welcome back" }   // all must hold (default)
+    chain "invalid" mode="or" { status 401; contains "wrong password" }  // any holds
+    chain ban       { contains "temporarily blocked" }
+    chain "invalid" { }   // no conditions = always matches (a default/catch-all)
+}
 ```
 
-The block holds one [condition](conditions.md).
+Actions:
+
+| Action | Effect |
+|--------|--------|
+| `"<name>"` | Finish the item into that bucket (e.g. `"valid"`, `"invalid"`, custom). |
+| `retry` | Re-run the item (next proxy), up to the job's retry count, then the `retry` bucket. |
+| `ban` | Same as `retry`; names the intent that the proxy is bad. |
+| `none` | Do nothing and continue the flow. |
+
+`mode="or"` makes a chain match when **any** condition holds; the default
+(`and`) needs **all**. The older single-condition form (`key-check { status
+200 }`) still loads.
 
 ## if
 
