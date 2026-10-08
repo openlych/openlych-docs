@@ -3,8 +3,8 @@
 Request fields are templated. Two forms expand a variable, and an unknown name
 is left literal (so stray braces do not break a request):
 
-- `{{name}}` — native form.
-- `<NAME>` — OpenBullet-style form.
+- `{{name}}` - native form.
+- `<NAME>` - OpenBullet-style form.
 
 ```kdl
 request POST "https://example.test/login" {

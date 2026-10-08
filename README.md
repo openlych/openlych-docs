@@ -27,9 +27,9 @@ zensical build --clean  # static output in ./site
 
 ## Structure
 
-- `zensical.toml` — site config, nav, theme (brand pink, Inter + JetBrains Mono).
-- `docs/` — Markdown pages. KDL reference lives in `docs/kdl/`.
-- `docs/stylesheets/extra.css` — exact brand colour overrides.
-- `docs/assets/` — logo and favicon.
+- `zensical.toml` - site config, nav, theme (brand pink, Inter + JetBrains Mono).
+- `docs/` - Markdown pages. KDL reference lives in `docs/kdl/`.
+- `docs/stylesheets/extra.css` - exact brand colour overrides.
+- `docs/assets/` - logo and favicon.
 
 The theme pins the OpenLych palette to match the app and the landing site.

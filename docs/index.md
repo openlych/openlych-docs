@@ -15,11 +15,11 @@ disk, plus how to install and run the app.
 
 ## Where to start
 
-- [Getting started](getting-started.md) — prerequisites, build, and run.
-- [KDL overview](kdl/index.md) — the config format, with a full annotated example.
-- [Steps](kdl/steps.md) — every step type and its options.
-- [Conditions](kdl/conditions.md) — what `key-check` and `if` test.
-- [Variables](kdl/variables.md) — templating and where variables come from.
+- [Getting started](getting-started.md) - prerequisites, build, and run.
+- [KDL overview](kdl/index.md) - the config format, with a full annotated example.
+- [Steps](kdl/steps.md) - every step type and its options.
+- [Conditions](kdl/conditions.md) - what `key-check` and `if` test.
+- [Variables](kdl/variables.md) - templating and where variables come from.
 
 ## How a flow runs
 

@@ -40,9 +40,9 @@ body multipart {
 }
 ```
 
-- `body text "..."` — inline body.
-- `body file "path"` — read the body from a file.
-- `body multipart { ... }` — `multipart/form-data`; each `part` is text, or a
+- `body text "..."` - inline body.
+- `body file "path"` - read the body from a file.
+- `body multipart { ... }` - `multipart/form-data`; each `part` is text, or a
   file when `file=#true`.
 
 Each list item runs in its own cookie jar, so a `Set-Cookie` from one request
@@ -85,6 +85,14 @@ Bind a variable to a literal or templated value.
 ```kdl
 set "ua" "OpenLych/1.0"
 set "auth" "Bearer {{token}}"
+```
+
+## delay
+
+Pause the flow for a number of milliseconds (also accepts `sleep`).
+
+```kdl
+delay 500
 ```
 
 ## key-check
