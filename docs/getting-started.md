@@ -64,6 +64,18 @@ SOCKS. Attach a list to a job in its detail view (the **Proxies** dropdown),
 then Start. Bots rotate through the pool, and a retry picks the next proxy, so
 a dead proxy is swapped out. The proxy used is recorded on each hit.
 
+## Hit outputs
+
+Hits always land in the local Hits DB. In **Settings -> Hit outputs** you can also:
+
+- **Webhook URL** - each hit is POSTed as JSON with a Discord/Slack-style
+  `content` string plus structured fields (`config`, `type`, `data`,
+  `captures`, `proxy`), so it works with a Discord/Slack webhook or any custom
+  endpoint.
+- **Output file** - each hit is appended as one JSON object per line (JSONL).
+
+Both fire when a run finishes. Leave a field blank to disable it.
+
 ## Debugging a config
 
 While building a config in the **Stacker**, press **Debug** in the top bar to
