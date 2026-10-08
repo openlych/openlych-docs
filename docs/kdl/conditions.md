@@ -19,7 +19,19 @@ if {
 | `equals "var" "value"` | Variable equals the value (templated). |
 | `has "var"` | Variable exists (was bound). |
 | `contains "text"` | Response body contains this substring. |
+| `matches "regex"` | Response body matches this regular expression. |
+| `header-contains "name" "value"` | A response header (case-insensitive name) contains the value. |
+| `greater "a" "b"` | `a > b` as numbers (both templated; false if either is not a number). |
+| `less "a" "b"` | `a < b` as numbers. |
 | `not { <condition> }` | Inverts the condition inside. |
+
+To compare lengths, pair a [`function`](steps.md#function) `length` with `greater`
+or `less`:
+
+```kdl
+function "n" length "{{token}}"
+key-check { greater "{{n}}" "20" }
+```
 
 ## Negation
 
