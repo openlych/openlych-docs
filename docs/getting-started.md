@@ -48,6 +48,22 @@ if {
 Save it, then in the **Jobs** tab create a job that points the config at a list
 and press **Start**. See the [KDL overview](kdl/index.md) for the full language.
 
+## Proxies
+
+The **Proxies** tab holds named proxy lists, one proxy per line:
+
+```
+1.2.3.4:8080
+1.2.3.4:8080:user:pass
+socks5://1.2.3.4:1080
+# lines starting with # are ignored
+```
+
+Plain `host:port` defaults to HTTP; use a `socks5://` / `socks4://` prefix for
+SOCKS. Attach a list to a job in its detail view (the **Proxies** dropdown),
+then Start. Bots rotate through the pool, and a retry picks the next proxy, so
+a dead proxy is swapped out. The proxy used is recorded on each hit.
+
 ## Debugging a config
 
 While building a config in the **Stacker**, press **Debug** in the top bar to
