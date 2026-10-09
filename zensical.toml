@@ -2,11 +2,10 @@
 site_name = "OpenLych Docs"
 site_description = "Documentation for OpenLych and its KDL configuration language."
 site_author = "OpenLych"
-# Change this to your Pages URL before publishing (e.g. https://<user>.github.io/openlych-docs/).
-site_url = "https://your.github.io/openlych-docs/"
+site_url = "https://openlych.github.io/openlych-docs/"
 copyright = "For authorized security research only."
-repo_url = "https://github.com/your/openlych"
-repo_name = "your/openlych"
+repo_url = "https://github.com/openlych/openlych"
+repo_name = "openlych/openlych"
 
 [project.theme]
 language = "en"
