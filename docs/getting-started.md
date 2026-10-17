@@ -18,6 +18,8 @@ cargo run
 cargo run -- --headless
 ```
 
+The desktop window and the browser run the same UI over the same local server, so everything below works the same in both.
+
 ### Live frontend dev loop
 
 ```sh
@@ -28,13 +30,24 @@ cd frontend && npm run dev     # terminal 2: Vite on :5173, proxies /api + /ws
 
 ## Where data lives
 
-Configs, wordlists, settings, and the Hits DB live in `$OPENLYCH_DATA`, or
-`./data` if that variable is not set. Configs are stored as `.kdl` files.
+Configs, wordlists, proxy lists, settings, and the Hits DB live in `$OPENLYCH_DATA`, or `./data` if that variable is not set. Configs are stored as `.kdl` files under `data/configs/` and can be edited in any text editor while the app is closed.
+
+## The screens
+
+| Tab | What it holds |
+|-----|----------------|
+| **Jobs** | Job instances (config + list + bots), start/stop, live counters, and the per-job detail view. |
+| **Configs** | The config manager (import/export) and the editor: **Stacker** (blocks) and **Text** (KDL), plus the **Debug** panel. |
+| **Wordlists** | Text and CSV lists, one per file. |
+| **Proxies** | Named proxy lists, with a built-in checker. |
+| **Hits DB** | Persisted hits with filters and capture search. |
+| **Settings** | Appearance, engine defaults, notifications, hit outputs, captcha keys, browser options. |
+
+See the [usage pages](index.md) for each of these.
 
 ## Your first flow
 
-In the **Configs** tab, open **Stacker** and either drag in blocks or switch to
-**Text** and paste KDL. A minimal health check:
+In the **Configs** tab, open **Stacker** and either drag in blocks or switch to **Text** and paste KDL. A minimal health check:
 
 ```kdl
 request GET "http://127.0.0.1:3000/api/health"
@@ -45,58 +58,22 @@ if {
 }
 ```
 
-Save it, then in the **Jobs** tab create a job that points the config at a list
-and press **Start**. See the [KDL overview](kdl/index.md) for the full language.
-
-## Proxies
-
-The **Proxies** tab holds named proxy lists, one proxy per line:
-
-```
-1.2.3.4:8080
-1.2.3.4:8080:user:pass
-socks5://1.2.3.4:1080
-# lines starting with # are ignored
-```
-
-Plain `host:port` defaults to HTTP; use a `socks5://` / `socks4://` prefix for
-SOCKS. Attach a list to a job in its detail view (the **Proxies** dropdown),
-then Start. Bots rotate through the pool, and a retry picks the next proxy, so
-a dead proxy is swapped out. The proxy used is recorded on each hit.
-
-## Hit outputs
-
-Hits always land in the local Hits DB. In **Settings -> Hit outputs** you can also:
-
-- **Webhook URL** - each hit is POSTed as JSON with a Discord/Slack-style
-  `content` string plus structured fields (`config`, `type`, `data`,
-  `captures`, `proxy`), so it works with a Discord/Slack webhook or any custom
-  endpoint.
-- **Output file** - each hit is appended as one JSON object per line (JSONL).
-
-Both fire when a run finishes. Leave a field blank to disable it.
-
-## Resuming a job
-
-Turn on **Resume** in a job's detail to skip list items already processed for
-that config + wordlist pair, so a stopped or finished run continues where it
-left off instead of starting over. Progress is saved per config + list when a
-run ends. **Reset progress** clears it, and turning Resume off also runs the
-whole list again.
+Save it, then in the **Jobs** tab create a job that points the config at a list and press **Start**. See the [KDL overview](kdl/index.md) for the full language, or read the sample configs in `data/configs/` for complete, runnable examples of every feature: crypto functions, file utilities, protocols, browser automation, scripts, loops, and branches.
 
 ## Debugging a config
 
-While building a config in the **Stacker**, press **Debug** in the top bar to
-open the debugger panel on the right. Type one data line (for example
-`user:pass`), press **Start**, and the flow runs once against just that line.
-Nothing is saved to the Hits DB.
+While building a config in the **Stacker**, press **Debug** in the top bar to open the debugger panel on the right. Type one data line (for example `user:pass`), press **Start**, and the flow runs once against just that line. Nothing is saved to the Hits DB.
 
 Three tabs show the result:
 
-- **Log**: each step and its outcome (request status, key-check pass/fail,
-  parsed values, the final result bucket).
+- **Log**: each step and its outcome (request status, key-check pass/fail, parsed values, the final result bucket).
 - **Data**: the variables the flow produced. Captured variables are highlighted.
 - **HTML**: the last response body, rendered in a sandboxed frame.
 
-This is the fast loop for getting a config right before you point it at a full
-wordlist.
+This is the fast loop for getting a config right before you point it at a full wordlist.
+
+## Next steps
+
+- [Jobs](usage/jobs.md) covers job controls, list types, data rules, and resuming a stopped run.
+- [Proxies](usage/proxies.md) covers proxy lists and the checker.
+- [The KDL overview](kdl/index.md) is the entry point for the language reference.

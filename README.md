@@ -20,16 +20,22 @@ zensical build --clean  # static output in ./site
 3. The workflow in `.github/workflows/deploy.yml` builds and deploys on every
    push to `main`.
 
-## Before publishing
-
-- Set `site_url`, `repo_url`, and `repo_name` in `zensical.toml` to the real
-  URLs.
-
 ## Structure
 
-- `zensical.toml` - site config, nav, theme (brand pink, Inter + JetBrains Mono).
-- `docs/` - Markdown pages. KDL reference lives in `docs/kdl/`.
-- `docs/stylesheets/extra.css` - exact brand colour overrides.
-- `docs/assets/` - logo and favicon.
+- `zensical.toml`: site config, nav, theme (brand pink, Inter + JetBrains Mono).
+- `docs/index.md`: home page and entry points.
+- `docs/getting-started.md`: install, run, first flow, debugger.
+- `docs/usage/`: app-level pages (jobs, proxies, hits, settings, OpenBullet import).
+- `docs/kdl/`: the KDL language reference, one page per step family.
+- `docs/stylesheets/extra.css`: exact brand colour overrides.
+- `docs/assets/`: logo and favicon.
 
 The theme pins the OpenLych palette to match the app and the landing site.
+
+## Keeping the reference honest
+
+The KDL grammar in `docs/kdl/` mirrors `src/kdlcfg.rs` and `src/model.rs` in the
+OpenLych repo: node names, keyword arguments, and operation lists come from
+there. When the engine adds or renames a step, update the matching page in the
+same change. The sample configs in the app's `data/configs/` are the executable
+form of this reference.
