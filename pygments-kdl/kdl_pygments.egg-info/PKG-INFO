@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: kdl-pygments
+Version: 0.1.0
+Summary: Pygments lexer for KDL, used by the OpenLych docs
+Requires-Python: >=3.8

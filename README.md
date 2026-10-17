@@ -8,7 +8,7 @@ deployed free to GitHub Pages.
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate
-pip install zensical
+pip install zensical ./pygments-kdl
 zensical serve          # live preview
 zensical build --clean  # static output in ./site
 ```
@@ -23,6 +23,9 @@ zensical build --clean  # static output in ./site
 ## Structure
 
 - `zensical.toml`: site config, nav, theme (brand pink, Inter + JetBrains Mono).
+- `pygments-kdl/`: a small Pygments lexer for KDL, installed into the build so
+  every fenced `kdl` code block gets syntax highlighting. The Pages workflow
+  installs it alongside zensical; `pip install ./pygments-kdl` locally.
 - `docs/index.md`: home page and entry points.
 - `docs/getting-started.md`: install, run, first flow, debugger.
 - `docs/usage/`: app-level pages (jobs, proxies, hits, settings, OpenBullet import).

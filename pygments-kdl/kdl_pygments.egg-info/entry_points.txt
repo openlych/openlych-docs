@@ -1,0 +1,2 @@
+[pygments.lexers]
+kdl = kdl_pygments:KdlLexer
